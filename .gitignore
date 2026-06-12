@@ -1,0 +1,21 @@
+# Secrets
+.credentials.json
+settings.json
+settings.local.json
+
+# Personal state
+MEMORY.md
+memory/
+history.jsonl
+sessions/
+projects/
+
+# Runtime / cache
+cache/
+backups/
+file-history/
+ide/
+plans/
+plugins/
+session-env/
+shell-snapshots/
