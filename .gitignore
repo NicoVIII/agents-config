@@ -11,6 +11,7 @@ sessions/
 projects/
 
 # Runtime / cache
+.last-cleanup
 cache/
 backups/
 file-history/
