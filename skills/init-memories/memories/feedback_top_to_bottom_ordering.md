@@ -5,8 +5,8 @@ metadata:
   type: feedback
 ---
 
-Order definitions top-to-bottom: every function, type, or constant may only reference things already defined above it in the same file. This mirrors F# source ordering. Exceptions only when circular dependencies make it genuinely impossible.
+Every definition may only reference things defined above it in the same file. Mirrors F# source ordering. Exceptions only when circular dependencies make it impossible.
 
-**Why:** User's explicit style preference — reads naturally, avoids forward-reference surprises.
+**Why:** Reads naturally, avoids forward-reference surprises.
 
-**How to apply:** When writing or refactoring any file, place helper/leaf functions before their callers, types before functions that use them. The public entry-point typically goes last. Apply this whenever editing or generating any file in this project.
+**How to apply:** Helpers before callers, types before functions that use them. Entry-point goes last.

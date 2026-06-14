@@ -5,21 +5,10 @@ metadata:
   type: feedback
 ---
 
-Prefer small, composable functions that each do one thing. A named function is the default
-unit of decomposition — reach for it even where there is no comment to remove, because a good
-name makes intent legible to humans and agents and keeps each function reason-about-able in
-isolation.
+Prefer small, composable functions that each do one thing. A named function is the default unit of decomposition — a good name makes intent legible and keeps each function independently understandable.
 
-A frequent trigger: a `// this block does X` comment marking a sub-step. Extracting that block
-into an `x(...)` function usually beats the comment — the name carries the what and the code
-stays flat. This is the positive counterpart to [[feedback_why_not_what]].
+A common trigger: a `// this block does X` comment. Extracting the block into a named function usually beats the comment. See [[feedback_why_not_what]].
 
-**Boundary — when NOT to extract:** extraction is a win only when it *reduces* complexity, not
-when it merely relocates it. Skip it when the helper would need many threaded parameters (the
-call site becomes as noisy as the inlined code) or when a one-shot block adds only a jump
-without clarifying intent. Judge by whether the extracted name + signature reads more clearly
-than the inline block, not by line count.
+**When NOT to extract:** only when extraction *reduces* complexity. Skip when the helper needs many threaded parameters (call site becomes as noisy as the inlined code) or when a one-shot block adds only indirection. Judge by whether the extracted name + signature reads more clearly than the inline block, not by line count.
 
-**How to apply:** when a function does several things in sequence, look for cohesive sub-steps
-to name and lift out — but only where the helper has a tight, low-arity signature. Prefer this
-over leaving a long function annotated with section comments.
+**How to apply:** when a function does several things in sequence, look for cohesive sub-steps to lift out — but only where the helper has a tight, low-arity signature.
