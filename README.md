@@ -27,4 +27,13 @@ git branch --set-upstream-to=origin/main main
 
 - `CLAUDE.md` — global personal preferences, loaded into every Claude Code session; applies automatically after cloning
 - `AGENTS.md` — guardrails for working on this repo itself
-- `skills/` — slash-command skills for Claude Code
+- `skills/` — slash-command skills for Claude Code, see below
+
+## Skills
+
+| Skill | Suggested model | Maturity |
+| --- | --- | --- |
+| [`grill-me`](skills/grill-me/SKILL.md) | Opus | 🟢 Usable |
+| [`prioritize`](skills/prioritize/SKILL.md) | Sonnet | 🧪 Experimental |
+
+Maturity: 🛡️ Battle-tested → 🟢 Usable → 🧪 Experimental → 🚧 WIP
