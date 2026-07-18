@@ -1,10 +1,10 @@
 # init-memories
 
-Installs a set of persistent, personal memories into a project's memory directory — preferences and feedback that aren't derivable from the codebase, so an agent restores them on a fresh machine or in a new project instead of relearning them each time.
+Installs a set of persistent, personal memories into a project's Claude Code memory directory — preferences and feedback that aren't derivable from the codebase, so Claude restores them on a fresh machine or in a new project instead of relearning them each time.
 
 ## The pattern this implements
 
-Agent-facing preferences tend to fall into three layers, and this skill owns exactly one of them:
+Preferences you want Claude to follow tend to fall into three layers, and this skill owns exactly one of them:
 
 - **Adviser / deliberation context** — your values and the open trade-offs you want discussed per-project. Lives wherever you brief the advising agent; not here.
 - **Project instructions** (e.g. `AGENTS.md`) — facts about a specific codebase that anyone touching it must follow. Lives in each project repo.

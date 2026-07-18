@@ -7,13 +7,13 @@ This skill installs my personal, cross-project memories into a project's memory 
 
 ## Steps
 
-1. **Locate** the current project's memory directory (create it if it doesn't exist).
+1. **Locate** the project's memory directory: Claude Code states the exact path in the system prompt's Memory section (`.../projects/<project>/memory/`). Use that path; create the directory if it doesn't exist. Do not guess an alternative location.
 
 2. **Copy missing memories.** For each `*.md` file in this skill's `memories/` directory, if a file of the same name is absent from the project memory directory, copy it in verbatim.
 
 3. **Reconcile existing memories.** If a same-named file already exists but its contents differ from the canonical version in `memories/`, do not silently skip or overwrite it. Show the diff and ask which to keep — a difference is either a stale copy worth updating or a deliberate per-project override worth preserving, and only I can say which.
 
-4. **Rebuild the index.** Ensure `MEMORY.md` exists and contains exactly one entry per installed memory. Generate each entry from that memory's own frontmatter (`name` and `description`) rather than maintaining the list by hand — the frontmatter is the source of truth for the index, so the two cannot drift. Leave any non-memory content already in `MEMORY.md` untouched.
+4. **Rebuild the index.** Ensure `MEMORY.md` exists and contains exactly one entry per installed memory, in the line format Claude Code's memory system expects: `- [<name>](<file>.md) — <description>`. Generate each entry from that memory's own frontmatter rather than maintaining the list by hand — the frontmatter is the source of truth for the index, so the two cannot drift. Leave any non-memory content already in `MEMORY.md` untouched.
 
 ## Why this shape
 
