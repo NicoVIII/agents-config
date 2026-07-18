@@ -1,23 +1,9 @@
-# Secrets
-.credentials.json
-settings.json
-settings.local.json
-
-# Personal state
-MEMORY.md
-memory/
-history.jsonl
-sessions/
-projects/
-
-# Runtime / cache
-.last-cleanup
-.last-update-result.json
-cache/
-backups/
-file-history/
-ide/
-plans/
-plugins/
-session-env/
-shell-snapshots/
+# Allowlist: ~/.claude is full of runtime state and secrets that Claude Code
+# creates and renames across versions. Ignore everything by default so new
+# state files can never be committed by accident; tracking something new is a
+# deliberate opt-in below.
+/*
+!/.gitignore
+!/LICENSE
+!/README.md
+!/skills
