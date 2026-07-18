@@ -1,5 +1,5 @@
 ---
-name: feedback_agents_md_updates
+name: feedback-agents-md-updates
 description: After structural decisions, check whether AGENTS.md needs updating; keep it minimal
 metadata:
   type: feedback

@@ -1,5 +1,5 @@
 ---
-name: feedback_small_composable_functions
+name: feedback-small-composable-functions
 description: "Default to small single-purpose functions as the unit of decomposition; a named function often replaces a 'what' comment"
 metadata:
   type: feedback
@@ -7,7 +7,7 @@ metadata:
 
 Prefer small, composable functions that each do one thing. A named function is the default unit of decomposition — a good name makes intent legible and keeps each function independently understandable.
 
-A common trigger: a `// this block does X` comment. Extracting the block into a named function usually beats the comment. See [[feedback_why_not_what]].
+A common trigger: a `// this block does X` comment. Extracting the block into a named function usually beats the comment. See [[feedback-why-not-what]].
 
 **When NOT to extract:** only when extraction *reduces* complexity. Skip when the helper needs many threaded parameters (call site becomes as noisy as the inlined code) or when a one-shot block adds only indirection. Judge by whether the extracted name + signature reads more clearly than the inline block, not by line count.
 

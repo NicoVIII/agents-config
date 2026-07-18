@@ -1,5 +1,5 @@
 ---
-name: feedback_interaction_style
+name: feedback-interaction-style
 description: Ask before assuming; be critical and factual; no sycophancy
 metadata:
   type: feedback

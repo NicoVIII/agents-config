@@ -1,5 +1,5 @@
 ---
-name: feedback_why_not_what
+name: feedback-why-not-what
 description: WHY not WHAT in comments and commits; grouping/orientation labels are allowed and encouraged
 metadata:
   type: feedback

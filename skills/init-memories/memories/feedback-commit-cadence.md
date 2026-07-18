@@ -1,5 +1,5 @@
 ---
-name: feedback_commit_cadence
+name: feedback-commit-cadence
 description: Commit proactively after each meaningful working change; full check suite must pass first
 metadata:
   type: feedback

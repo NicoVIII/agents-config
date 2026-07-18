@@ -1,5 +1,5 @@
 ---
-name: feedback_top_to_bottom_ordering
+name: feedback-top-to-bottom-ordering
 description: "Files must be ordered top-to-bottom F#-style — every definition may only reference things defined above it"
 metadata:
   type: feedback
