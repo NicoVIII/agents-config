@@ -24,7 +24,7 @@ Walk the run and collect observed friction only:
 
 Present each finding as a concrete edit to the SKILL.md — quote current text, show the replacement — ranked by how much friction it caused. Mark anything not backed by the transcript as speculative; observed friction outranks ideas. If the run was clean, say so and propose nothing — do not manufacture findings.
 
-Write edits for the skill's suggested model in the README table, not for the model doing the retro — the retro may run on a stronger model (switch via `/model`; session context survives), so do not compress instructions the target model would need spelled out.
+Write edits for the skill's suggested model in the README maturity table (`~/.claude/README.md`), not for the model doing the retro — the retro may run on a stronger model (switch via `/model`; session context survives), so do not compress instructions the target model would need spelled out.
 
 Also assess maturity: after consistently clean runs, suggest promoting the skill in the README table; promotion to 🛡️ Battle-tested removes the feedback footer.
 
