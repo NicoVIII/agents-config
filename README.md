@@ -38,6 +38,20 @@ git branch --set-upstream-to=origin/main main
 | [`prioritize`](skills/prioritize/SKILL.md) | Scans your GitHub repos for open PRs, issues, CI failures, and security alerts, then ranks what to tackle first. | Sonnet | 🧪 Experimental |
 | [`skill-retro`](skills/skill-retro/SKILL.md) | Reviews a skill's run in the current session against its SKILL.md and turns observed friction into concrete skill edits. | Opus | 🧪 Experimental |
 
+## Workflows
+
+Some skills are meant to run in sequence:
+
+- **Session triage** — Run `/prioritize` to scan your repos and decide what to
+  work on. When it surfaces dependency bumps, `cd` into that repo and run
+  `/merge-dependabot` to clear the ones CI actually verifies.
+- **Refining a skill after use** — After running any skill that isn't yet
+  🛡️ Battle-tested, run `/skill-retro` in the same session to turn the friction
+  you hit into concrete skill edits (this is what the skills' feedback footer
+  feeds).
+
+These are starting points, not fixed pipelines — each skill also stands alone.
+
 Maturity: 🚧 WIP → 🧪 Experimental → 🟢 Usable → 🛡️ Battle-tested
 
 Skills below 🛡️ end with a feedback footer that asks the agent to surface friction during runs; `/skill-retro` turns that feedback into skill edits.
