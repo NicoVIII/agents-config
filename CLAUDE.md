@@ -12,6 +12,7 @@ Cross-project preferences, loaded into every session. Personal — never copy th
 - Commit proactively after each independently meaningful change — don't wait to be asked. The full check suite must pass before every commit; no exceptions for lint or formatting.
 - When a change is inherently atomic (e.g. a rename that won't compile until all sites update), accept one larger commit rather than an artificial split.
 - Commit messages explain WHY — reasoning, trade-offs, non-obvious constraints — not WHAT; the diff carries the what.
+- Never push, and don't ask about pushing — I push manually.
 
 ## Code style
 
