@@ -12,3 +12,7 @@ If a question can be answered by exploring the codebase, explore the codebase in
 ---
 
 Based on https://github.com/mattpocock/skills (MIT License)
+
+---
+
+This skill is not yet battle-tested: if any instruction above was ambiguous, wrong, or needed a workaround, say so briefly at the end of the run.
