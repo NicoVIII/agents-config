@@ -27,6 +27,7 @@ Encode this observed knowledge, not generic advice. A skill earns its tokens by 
 - The frontmatter `description` is the only trigger signal: pack it with phrases I would actually say, ending with a first-person "Use when …" clause.
 - Write the body for the suggested execution model, which may be weaker than you: spell out commands, orderings, and edge cases rather than compressing.
 - State scope and stop conditions explicitly — what the skill does *not* do, and when to stop and report instead of continuing.
+- Attribution: if the skill writes anywhere others read on my behalf — GitHub comments, reviews, issues, wholesale prose — its instructions must require ending that output with a short agent marker (e.g. "— written by an agent"). Media that already carry authorship (commits via `Co-Authored-By`, PR footers, merges) need no marker; code never gets one. This norm's only home is here — deliberately not in global memory — so every skill that writes externally must restate it (as `verify-bump` and `merge-dependabot` do).
 - Suggest an execution model: Sonnet for mechanical, procedural runs; Opus for judgment-heavy ones.
 
 ## Land it
