@@ -64,4 +64,4 @@ These are starting points, not fixed pipelines — each skill also stands alone.
 
 Maturity: 🚧 WIP → 🧪 Experimental → 🟢 Usable → 🛡️ Battle-tested
 
-Skills below 🛡️ end with a feedback footer that asks the agent to surface friction during runs; `/skill-retro` turns that feedback into skill edits.
+Skills below 🟢 Usable end with a feedback footer that asks the agent to surface friction during runs; `/skill-retro` turns that feedback into skill edits.
