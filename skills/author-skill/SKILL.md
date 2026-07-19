@@ -20,6 +20,8 @@ The reason to write the skill now, here, is that the knowledge is in this transc
 - Corrections and clarifications from the user — these become explicit instructions
 - Where the workflow started and stopped — these become scope and stop conditions
 
+Some skills are requested outright ("add a skill for X") rather than distilled from work just done — then there is no workflow to mine and the knowledge lives in my head instead. Extract it before drafting: ask scope questions, or run the `grilling` skill when the design has real decision branches to resolve. Flag in the draft presentation that the content is derived rather than observed — the rules haven't been exercised even once, so I should review them harder.
+
 Encode this observed knowledge, not generic advice. A skill earns its tokens by stating what the executing agent would otherwise re-derive or get wrong.
 
 ## Write
@@ -28,7 +30,7 @@ Encode this observed knowledge, not generic advice. A skill earns its tokens by 
 - Write the body for the suggested execution model, which may be weaker than you: spell out commands, orderings, and edge cases rather than compressing.
 - State scope and stop conditions explicitly — what the skill does *not* do, and when to stop and report instead of continuing.
 - Attribution: if the skill writes anywhere others read on my behalf — GitHub comments, reviews, issues, wholesale prose — its instructions must require ending that output with a short agent marker (e.g. "— written by an agent"). Media that already carry authorship (commits via `Co-Authored-By`, PR footers, merges) need no marker; code never gets one. This norm's only home is here — deliberately not in global memory — so every skill that writes externally must restate it (as `verify-bump` and `merge-dependabot` do).
-- Suggest an execution model: Sonnet for mechanical, procedural runs; Opus for judgment-heavy ones.
+- Suggest an execution model: Sonnet for mechanical, procedural runs; Opus for judgment-heavy ones. Other tiers need explicit justification — a skill worth writing is rarely a Haiku task, and Fable as a routine run model defeats the cost point of the column.
 
 ## Land it
 
