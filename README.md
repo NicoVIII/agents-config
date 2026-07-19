@@ -37,13 +37,13 @@ git branch --set-upstream-to=origin/main main
 
 | Skill | Summary | Suggested model | Maturity |
 | --- | --- | --- | --- |
-| [`author-skill`](skills/author-skill/SKILL.md) | Creates a new global skill from the current session's context or edits an existing one to the same standards, carrying this repo's conventions into project sessions where AGENTS.md doesn't load. | Fable | 🚧 WIP |
-| [`grilling`](skills/grilling/SKILL.md) | Grill the user relentlessly about a plan, decision, or idea, one question at a time, resolving each decision branch until you reach shared understanding. | Opus | 🟢 Usable |
-| [`merge-dependabot`](skills/merge-dependabot/SKILL.md) | Assesses the current repo's open Dependabot PRs, merges the bumps a real test suite verifies, and flags the rest with test or manual-verification guidance. | Sonnet | 🧪 Experimental |
-| [`pick-model`](skills/pick-model/SKILL.md) | Recommends the cheapest Claude model tier that fits the task at hand in a session, weighing escalation signals and the context re-read a `/model` switch costs. | Sonnet | 🚧 WIP |
-| [`prioritize`](skills/prioritize/SKILL.md) | Scans your GitHub repos for open PRs, issues, CI failures, and security alerts, then ranks what to tackle first. | Sonnet | 🧪 Experimental |
-| [`skill-retro`](skills/skill-retro/SKILL.md) | Reviews a skill's run in the current session against its SKILL.md and turns observed friction into concrete skill edits. | Opus | 🧪 Experimental |
-| [`verify-bump`](skills/verify-bump/SKILL.md) | Verifies a single dependency-bump PR by running the checks its green CI doesn't cover, then merges on confirmation or proposes the fix it needs. | Opus | 🧪 Experimental |
+| [`author-skill`](skills/author-skill/SKILL.md) | Capture a session's workflow as a new skill, or refine an existing one. | Fable | 🚧 WIP |
+| [`grilling`](skills/grilling/SKILL.md) | Stress-test a plan or idea through relentless questioning. | Opus | 🟢 Usable |
+| [`merge-dependabot`](skills/merge-dependabot/SKILL.md) | Clear the Dependabot PRs that are actually safe to merge. | Sonnet | 🧪 Experimental |
+| [`pick-model`](skills/pick-model/SKILL.md) | Pick the cheapest Claude model that still fits the task. | Sonnet | 🚧 WIP |
+| [`prioritize`](skills/prioritize/SKILL.md) | Decide what to work on next across your GitHub repos. | Sonnet | 🧪 Experimental |
+| [`skill-retro`](skills/skill-retro/SKILL.md) | Improve a skill right after running it, from observed friction. | Opus | 🧪 Experimental |
+| [`verify-bump`](skills/verify-bump/SKILL.md) | Land a dependency bump that green CI alone doesn't prove safe. | Opus | 🧪 Experimental |
 
 "Suggested model" is the model to *run* a skill with. Writing or refining a
 skill is different: switch to the most capable model available (currently
