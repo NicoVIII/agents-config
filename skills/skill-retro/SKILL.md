@@ -9,7 +9,7 @@ Improve the skill that ran in this session, using the transcript as evidence.
 
 Review the most recent skill run in this session, or the skill named as argument. A completed skill-retro run is itself a valid subject: when every other skill run in the session is already retro'd, reviewing the retro is the expected reading, not an error. The transcript is the evidence base — if the named skill did not run in this session, say so and stop; do not review a skill from its text alone.
 
-One retro covers one skill: never fold another skill's friction into this one. Other skills that ran this session get their own retros, often in branched sessions this transcript can't see — before naming one as a candidate, check for evidence its retro already happened (today's entry in its `RUNS.md`, or a commit today touching `skills/<name>/` in `~/.claude`) and stay silent if so. A surviving candidate gets one brief mention at the end of the findings — never repeated in the wrap-up.
+One retro covers one skill: never fold another skill's friction into this one, and don't hunt for other retro candidates — other skills that ran this session get their own retros when I invoke this skill on them; whether that already happened is not this retro's business.
 
 ## Collect evidence
 
@@ -28,7 +28,7 @@ Present each finding as a concrete edit to the SKILL.md — quote current text, 
 
 Write edits for the skill's suggested model in the README maturity table (`~/.claude/README.md`), not for the model doing the retro — the retro may run on a stronger model (switch via `/model`; session context survives), so do not compress instructions the target model would need spelled out.
 
-Also assess maturity — from the run log, not this run alone. Read the skill's `RUNS.md` (next to its SKILL.md; missing means no logged runs yet) and judge against the rough bars: 🧪 Experimental → 🟢 Usable after ~3 clean entries; 🟢 Usable → 🛡️ Battle-tested after ~5 clean entries spanning at least 2–3 different repos — breadth of conditions counts as much as the number of runs. Suggest promotions in the README table; promotion to 🟢 Usable removes the feedback footer.
+Also assess maturity — from the run log, not this run alone. Read the skill's `RUNS.md` (next to its SKILL.md; missing means no logged runs yet) and judge against the rough bars: 🚧 WIP → 🧪 Experimental once any run has completed end-to-end (WIP means untested, or every attempt so far was canceled — one logged completed run clears it, friction or not); 🧪 Experimental → 🟢 Usable after ~3 clean entries; 🟢 Usable → 🛡️ Battle-tested after ~5 clean entries spanning at least 2–3 different repos — breadth of conditions counts as much as the number of runs. Suggest promotions in the README table; promotion to 🟢 Usable removes the feedback footer.
 
 ## Apply
 
