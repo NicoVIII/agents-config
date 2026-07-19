@@ -43,7 +43,10 @@ git branch --set-upstream-to=origin/main main
 "Suggested model" is the model to *run* a skill with. *Writing* or refining a
 skill is different: always use the most capable model available (currently
 Fable, otherwise Opus) — skill text is written once but steers every future
-run, so authoring quality dominates authoring cost.
+run, so authoring quality dominates authoring cost. Deliberate exception:
+`skill-retro` runs on Opus. Its edits are narrow and anchored to friction
+observed in the transcript rather than open-ended authoring, and it runs
+after every skill iteration, so cost weighs heavier there.
 
 ## Workflows
 
