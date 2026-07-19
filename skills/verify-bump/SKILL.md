@@ -5,11 +5,11 @@ description: Verify and land a single dependency-bump PR in the current repo —
 
 Verify one dependency-bump PR by exercising what its green CI doesn't prove, then land it with my confirmation. The goal is landing the bump — a verification that ends in "flagged, again" has failed at its job; when something blocks the merge, propose the concrete fix and offer to execute it.
 
-Scope: a single PR in the current repo whose diff is "a dependency changed version" — any author. `merge-dependabot` sweeps a repo's bot PRs in bulk and flags the risky ones; this skill is the deep follow-up on one PR. If a merge-dependabot report from earlier in this session covers the PR, reuse its assessment (use sites, changelog links, test-gap notes) instead of re-deriving it.
+Scope: a single PR in the current repo whose diff is "a dependency changed version" — any author. `merge-dependabot` sweeps a repo's bot PRs in bulk and flags the risky ones; this skill is the deep follow-up on one PR. If a merge-dependabot report from earlier in this session covers the PR, reuse its assessment (use sites, changelog links, test-gap notes) instead of re-deriving it — but always re-fetch PR state first: a rebase since the sweep can change the bump itself (even major→patch), invalidating the report's risk assessment.
 
 ## Gather
 
-Skip whatever a same-session merge-dependabot report already established.
+Skip the *static* findings a same-session report established (use sites, workflow reading, changelog links) — never skip the PR-state query.
 
 - PR state: `gh pr view <n> --json title,body,headRefName,baseRefName,mergeStateStatus,statusCheckRollup,isDraft`.
 - Every bumped package: for grouped PRs parse each ``Updates `x` from A to B`` line in the body, not just the title.
@@ -25,7 +25,7 @@ Skip whatever a same-session merge-dependabot report already established.
 
 Green CI proves compile + suite pass. Design checks for the gap — match each bump to its risk shape (grouped PRs can hit several; cover at least the worst member's):
 
-- **The bump is a tool that runs other things** (test runner, build orchestration, formatter, CI action): run the orchestration end-to-end locally and confirm outputs and exit codes still integrate with whatever invokes it — a subtly broken runner config can pass trivially while exercising nothing. Cheap counter-check: break one test temporarily and confirm the failure still propagates as a nonzero exit.
+- **The bump is a tool that runs other things** (test runner, build orchestration, formatter, CI action): run the orchestration end-to-end locally and confirm outputs and exit codes still integrate with whatever invokes it — a subtly broken runner config can pass trivially while exercising nothing. Cheap counter-check: break one test temporarily and confirm the failure still propagates as a nonzero exit. If the tests the runner executes are compiled/generated output (Fable, tsc, codegen), break the *source* and rebuild instead of editing the output — generated files are often untracked (no `git checkout` restore) and incremental builds may skip regenerating a tampered file; restoring may need a forced clean rebuild (delete the output dir).
 - **The bump is a compiler or code generator**: build on the merge-base first and keep the generated output, rebuild on the PR branch, diff the two — a codegen regression that still compiles and passes is exactly what CI misses. Judge the diff: version-stamp noise is fine, behavioral changes need reading.
 - **The bump is a test library with custom extension points** (generators/Arb instances, reporters, fixtures): confirm the extensions still compile *and still behave* — property-test generators can silently produce degenerate inputs post-bump while the suite stays green; sample generated values if the API allows.
 - **Ordinary library**: exercise the use sites beyond the suite — run the code paths that touch them, walk the changelog's breaking list item-by-item against each use site.
@@ -39,7 +39,7 @@ git fetch origin pull/<n>/head:verify-bump-<n>
 git worktree add <scratchpad>/verify-bump-<n> verify-bump-<n>
 ```
 
-For baseline comparisons, add a second worktree at the PR's merge-base. Run the planned checks and capture actual output, not impressions. Clean up after the verdict (and after any merge):
+For baseline comparisons, add a second worktree at the PR's merge-base. Run the planned checks and capture actual output, not impressions. Capture exit codes from the command itself, never after a pipe — `cmd | tail; echo $?` reports the pipe tail's status; use `${PIPESTATUS[0]}` or run the command unpiped. Clean up after the verdict (and after any merge):
 
 ```sh
 git worktree remove --force <path> && git branch -D verify-bump-<n>
