@@ -11,7 +11,7 @@ Scope is the current repo only. `prioritize` finds *which* repos have bumps wait
 
 Run these once for the repo (batch the independent ones):
 
-- Open Dependabot PRs: `gh pr list --author 'app/dependabot' --state open --json number,title,body,headRefName,mergeable,isDraft,statusCheckRollup`. No results → say so and stop.
+- Open Dependabot PRs: `gh pr list --author 'app/dependabot' --state open --json number,title,headRefName,mergeable,isDraft,statusCheckRollup`. No results → say so and stop. Do **not** request `body` in the bulk list — Dependabot bodies embed full release notes and blow up the output. When you need a PR's bumped-member lines or changelog links, fetch per PR: `gh pr view <n> --json body -q .body | grep -E '^Update(s|d) '` (npm-style bodies say ``Updates `x` ``, nuget-style say `Updated [x]`).
 - Allowed merge method: `gh repo view --json squashMergeAllowed,mergeCommitAllowed,rebaseMergeAllowed`. Prefer squash → merge → rebase.
 - **Does CI run a real test suite?** Read `.github/workflows/*.{yml,yaml}` and look for a genuine test-runner step (`npm test`, `pytest`, `jest`, `vitest`, `go test`, `cargo test`, `dotnet test`, `mvn test`, …) — *not* lint / typecheck / build / format alone. This is the load-bearing check: if no workflow runs tests, green CI proves nothing and **every** bump is flagged as unverified. Decide this once; it applies to all PRs.
 - **Repo policy.** Read `.github/dependabot.yml` if present for `ignore` rules and directory scoping. A bump matching an ignore rule shouldn't have been opened — treat it as policy-flagged (below), not safe.
@@ -25,13 +25,13 @@ Per PR, in order — first match wins:
 2. **Checks still pending** → `⏳ pending` — skip this run, no verdict yet.
 3. **No real test suite** (from Gather) → `⚠ unverified` — green CI is meaningless without tests.
 4. **Not mergeable** (`mergeStateStatus` is `DIRTY`/`CONFLICTING`) → `⚠ needs rebase` — note `@dependabot rebase`; do not merge.
-5. **Major bump** → `⚠ major` — breaking by design; tests rarely cover intentional breakage. Treat a PR as major if any bumped dependency crosses a major version, **or** crosses a pre-1.0 minor (`0.27 → 0.28`, `0.x → 1.0`) since pre-1.0 minors can break. For grouped PRs the highest-risk member decides (worst-member wins) — parse each `Updates \`x\` from A to B` line in the body, not just the title.
+5. **Major bump** → `⚠ major` — breaking by design; tests rarely cover intentional breakage. Treat a PR as major if any bumped dependency crosses a major version, **or** crosses a pre-1.0 minor (`0.27 → 0.28`, `0.x → 1.0`) since pre-1.0 minors can break. For grouped PRs the highest-risk member decides (worst-member wins) — parse each `Update(s|d) x from A to B` line in the body, not just the title. The body can be stale: before classifying a grouped or lockfile-only PR by its body versions, confirm with `gh pr diff <n> --name-only` that a manifest file actually changes. A diff touching only the lockfile, with the resolved version staying inside the existing manifest range, is not the bump the body claims — treat it as a stale refresh, check whether another open PR bumps the same dependency (it's likely superseded; see Unstick), and don't flag it major on the body's say-so.
 6. **Contradicts repo policy** → `⚠ policy` — even green + minor. A bump matching a `.github/dependabot.yml` ignore rule shouldn't merge (likely a config gap — offer to close it). For a **library**, also be wary of bumps that raise a dependency floor consumers must match (target framework, `FSharp.Core`, a declared minimum) — the library should keep working against the *old* version, so verify compatibility instead of bumping. Flag; do not merge.
 7. Otherwise (**green + real tests + patch/minor + mergeable + no policy conflict**) → `✓ safe`.
 
 ## Present & merge
 
-List safe PRs, then flagged PRs grouped by reason. Ask **once** to merge the safe batch. On confirmation, merge each with the repo's method and delete the branch: `gh pr merge <n> --squash --delete-branch` (swap `--squash` for `--merge`/`--rebase` per Gather). Never touch a flagged PR.
+List safe PRs, then flagged PRs grouped by reason. Ask **once** to merge the safe batch. If no PR is safe, say so, skip the merge ask, and go straight to the flagged report and the unstick confirmation — one question total. On confirmation, merge each with the repo's method and delete the branch: `gh pr merge <n> --squash --delete-branch` (swap `--squash` for `--merge`/`--rebase` per Gather). Never touch a flagged PR.
 
 For each **flagged** PR, make it actionable — state the reason, then:
 
