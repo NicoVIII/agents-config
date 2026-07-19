@@ -24,7 +24,7 @@ Walk the run and collect observed friction only:
 
 ## Propose
 
-Present each finding as a concrete edit to the SKILL.md — quote current text, show the replacement — ranked by how much friction it caused. Mark anything not backed by the transcript as speculative; observed friction outranks ideas. If the run was clean, say so and propose nothing — do not manufacture findings.
+Present each finding as a concrete edit to the SKILL.md — quote current text, show the replacement — ranked by how much friction it caused. Before writing a patch, check the friction's history in `RUNS.md` and the git log of the skill's directory: when the same mechanism has already been patched for friction before, propose removing or simplifying the mechanism instead of rewording it again — repeated friction from one feature is evidence against the feature, not its phrasing. Mark anything not backed by the transcript as speculative; observed friction outranks ideas. If the run was clean, say so and propose nothing — do not manufacture findings.
 
 Write edits for the skill's suggested model in the README maturity table (`~/.claude/README.md`), not for the model doing the retro — the retro may run on a stronger model (switch via `/model`; session context survives), so do not compress instructions the target model would need spelled out.
 
