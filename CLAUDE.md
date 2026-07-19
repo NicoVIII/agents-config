@@ -18,6 +18,8 @@ Cross-project preferences, loaded into every session. Personal — never copy th
 
 ## Code style
 
+- Before writing new code, exhaust reuse in this order: existing helper/pattern in the codebase → stdlib → native platform feature → already-installed dependency. Only then write it — and keep it minimal. Never add a new dependency without asking.
+- Bug fixes target the root cause, not the reported symptom: before patching the path a report names, check the other callers of the function you're touching — one fix in the shared function beats a guard per caller, and patching only the named path leaves sibling callers broken.
 - Prefer small, composable, single-purpose functions; a well-named function is the default unit of decomposition. A `// this block does X` comment is a trigger to extract a named function instead. Skip extraction only when it would reduce clarity: helpers needing many threaded parameters, or one-shot blocks that add pure indirection.
 - Order files top-to-bottom F#-style: every definition references only things defined above it. Helpers before callers, types before functions that use them, entry point last. Exceptions only for circular dependencies.
 - Comments explain WHY, not WHAT — if a reader could infer it from types and names, cut it. Carve-outs where prose is warranted: doc comments on public APIs; type-lossy seams where the signature can't express the contract (anonymous `String`/`Int` parameters, unencoded error semantics, idempotency assumptions); short orientation labels in long functions (`// Phase 2: reconcile`).
